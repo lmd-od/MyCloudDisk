@@ -1,0 +1,44 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+  <context-param>
+	<param-name>contextConfigLocation</param-name>
+	<param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  
+  <!-- log4j configuration -->
+  <listener>   
+      <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+  
+  <!-- spring configuration -->
+  <listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+  <!-- springMVC -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+       <param-name>contextConfigLocation</param-name>
+       <param-value>classpath:pringmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <!-- MyCloud Configyration -->
+  <servlet>
+  	<servlet-name>myCloudDiskConfigurationServlet</servlet-name>
+  	<servlet-class>org.myclouddisk.web.MyCloudDiskConfigurationServlet</servlet-class>
+  	<load-on-startup>0</load-on-startup>
+  </servlet>
+  
+  <!-- springMVC path -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>login.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
